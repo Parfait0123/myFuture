@@ -1,0 +1,18 @@
+# Généré automatiquement le 20 octobre 2025
+
+chromadb==0.5.3
+google-generativeai==0.7.2
+langchain==0.2.17
+langchain-community==0.2.19
+langchain-core==0.2.43
+langchain-google-genai==1.0.8
+langchain-huggingface==0.0.3
+msoffcrypto-tool==5.4.2
+numpy==1.26.4
+openpyxl==3.1.5
+pandas==2.2.3
+requests==2.32.5
+sentence-transformers==3.1.1
+unstructured==0.18.15
+
+# Bibliothèques non installées dans l'environnement actuel :
