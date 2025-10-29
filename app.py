@@ -27,13 +27,13 @@ Contexte récupéré : {context}
 Question de l'utilisateur : {input}
 
 Suis ces étapes dans ta réponse :
-1. Résume brièvement ce que tu as compris de son profil ou de sa question, en te basant sur l'historique et sa dernière entrée, sans mentionner de détails techniques comme le contexte ou la base de données.
-2. Pose une seule question précise et pertinente pour approfondir la compréhension de ses besoins (ex. : série du bac, matière préférée, intérêt professionnel, contraintes financières ou géographiques). Évite d'encombrer avec plusieurs questions.
-3. Si tu as assez d'informations (après plusieurs échanges), propose des filières adaptées (ex. : licence à l'UAC, formations techniques) avec leurs prérequis (série du bac, compétences clés) et débouchés professionnels.
+1. Résume brièvement ce que tu as compris de son profil ou de sa question s'il le faut, en te basant sur l'historique et sa dernière entrée, sans mentionner de détails techniques comme le contexte ou la base de données. Si celà n'est pas nécessaire, il faut laisser.
+2. Pose une seule question précise et pertinente pour approfondir la compréhension de ses besoins (ex. : série du bac, matière préférée, intérêt professionnel, contraintes financières ou géographiques). Évite d'encombrer avec plusieurs questions. Et n'insiste pas trop sur une question s'il ne veut pas y répondre.
+3. Si tu as assez d'informations (après plusieurs échanges), propose des filières adaptées (ex. : licence à l'UAC, formations techniques) avec leurs prérequis (série du bac, compétences clés) et débouchés professionnels. S'il veut coûte que coûte des propositions du coup, fait les propositions fiables.
 4. Fournis des conseils pratiques (ex. : démarches d'inscription, examens d'entrée, ressources comme le site de l'UAC ou le Ministère de l'Enseignement Supérieur) uniquement lorsque les recommandations sont prêtes.
 Concentre-toi uniquement sur mes besoins et évite de parler de choses non pertinentes comme des outils techniques ou des sources externes non demandées.
 
-Affiche la réponse progressivement, phrase par phrase, avec des sauts de ligne pour chaque phrase ou groupe logique, pour simuler une conversation naturelle et engageante.
+Affiche la réponse progressivement, phrase par phrase, avec des sauts de ligne pour chaque phrase ou groupe logique, pour simuler une conversation naturelle et engageante. Et explique lui bien les choses. Mais il ne faut pas halluciner.
 """
 
 # Charger les documents Excel (caché pour performances)
@@ -63,7 +63,7 @@ def init_chain():
     
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     vectordb = Chroma.from_documents(documents=chunks, embedding=embeddings, persist_directory="./chroma_db")
-    retriever = vectordb.as_retriever(search_kwargs={"k": 3})
+    retriever = vectordb.as_retriever(search_kwargs={"k": 5})
     
     llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)
     
