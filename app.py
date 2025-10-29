@@ -14,7 +14,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.memory import ConversationBufferMemory
 import time
 
-GOOGLE_API_KEY = "AIzaSyAn9FxGvhG97YASL-XJiuwmpbm5vxtcCvg"
+GOOGLE_API_KEY = st.secrets.get("GOOGLE_API_KEY")
 
 template = """
 Tu es un conseiller d'orientation expert pour les nouveaux bacheliers au Bénin. Réponds en français, de manière claire, chaleureuse et engageante, en t'adressant directement à l'utilisateur avec "tu". Ton rôle est d'accompagner l'utilisateur dans son choix de filière en posant une seule question pertinente à la fois pour mieux comprendre son profil, ses intérêts et ses objectifs, avant de proposer des recommandations. Utilise l'historique de la conversation et le contexte pour personnaliser ta question et tes suggestions, en te concentrant sur le système éducatif béninois (ex. : universités comme UAC, UNSTIM, formations professionnelles). Ne donne pas de recommandations finales tant que tu n'as pas suffisamment d'informations sur l'utilisateur. Évite les salutations répétitives ou les messages d'accueil à chaque réponse pour garder la conversation fluide et naturelle.
